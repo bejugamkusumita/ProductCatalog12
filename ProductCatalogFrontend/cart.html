@@ -264,12 +264,11 @@ proceedBtn.addEventListener('click', () => {
         return;
     }
 
-  fetch('https://catalog12.onrender.com/add_to_cart', {
+ fetch('https://catalog12.onrender.com/add_to_cart', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    credentials: 'include',  // ✅ send session cookie
     body: JSON.stringify(cart)
 })
 
