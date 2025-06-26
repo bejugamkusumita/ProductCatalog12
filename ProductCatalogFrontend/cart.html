@@ -198,25 +198,8 @@ const cartContainer = document.querySelector('.cart-container');
 const checkoutSuccess = document.getElementById('checkout-success');
 const checkoutBody = document.getElementById('checkout-body');
 const finalTotal = document.getElementById('final-total');
-let cart = [];
 
-async function fetchCart() {
-  try {
-    const res = await fetch("https://catalog12.onrender.com/get_cart", {
-      credentials: "include"
-    });
-    if (!res.ok) throw new Error("Failed to fetch cart");
-
-    cart = await res.json();
-    renderCart();
-  } catch (err) {
-    console.error("Error fetching cart:", err);
-    alert("Could not load cart. Please log in again.");
-  }
-}
-
-window.onload = fetchCart;
-
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function renderCart() {
     cartBody.innerHTML = '';
