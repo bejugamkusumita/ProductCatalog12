@@ -672,16 +672,20 @@
     });
   });
 });
-window.onload = function () {
-    const username = localStorage.getItem("username");
-    const greeting = document.getElementById("user-greeting");
+window.onload = async function () {
+  const greeting = document.getElementById("user-greeting");
 
-    if (username) {
-        greeting.textContent = `Hello, ${username}`;
-    } else {
-        greeting.textContent = `Hello, Guest`;
-    }
+  try {
+    const res = await fetch("https://catalog12.onrender.com/get_user", {
+      credentials: "include" // Important to include cookies/session
+    });
+    const data = await res.json();
+    greeting.textContent = `Hello, ${data.username}`;
+  } catch (err) {
+    greeting.textContent = "Hello, Guest";
+  }
 };
+
   </script>
 </body>
 </html>
