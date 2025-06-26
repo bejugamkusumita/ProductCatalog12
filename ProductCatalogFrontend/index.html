@@ -129,7 +129,7 @@
     const password = document.getElementById('password').value;
 
     try {
-      const res = await fetch("https://catalog12.onrender.com/login", {
+      const res = await fetch("https://productcatalog-backend.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -169,7 +169,7 @@ document.getElementById('signupForm').onsubmit = async function(e) {
   const username = document.getElementById('signupUsername').value.trim();
 
   try {
-    const res = await fetch("https://catalog12.onrender.com/signup", {
+    const res = await fetch("https://productcatalog-backend.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
