@@ -676,7 +676,7 @@ window.onload = async function () {
   const greeting = document.getElementById("user-greeting");
 
   try {
-    const res = await fetch("https://catalog12.onrender.com/get_user", {
+    const res = await fetch("https://productcatalog-backend.onrender.com/get_user", {
       credentials: "include" // Important to include cookies/session
     });
     const data = await res.json();
