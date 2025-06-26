@@ -162,24 +162,35 @@
   };
 
   // ✅ Keep signupForm as-is (localStorage-based unless you want to send to backend)
-  document.getElementById('signupForm').onsubmit = function(e) {
-    e.preventDefault();
-    const email = document.getElementById('signupEmail').value.trim();
-    const password = document.getElementById('signupPassword').value;
-    const username = document.getElementById('signupUsername').value.trim();
+document.getElementById('signupForm').onsubmit = async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  const username = document.getElementById('signupUsername').value.trim();
 
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    if (users.some(user => user.email === email)) {
-      alert('Email is already registered.');
-      return;
+  try {
+    const res = await fetch("https://catalog12.onrender.com/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password, username })
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+      alert("Account created successfully! Please log in.");
+      toggleForms();
+    } else {
+      alert(result.message || "Signup failed.");
     }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Could not connect to server.");
+  }
+};
 
-    users.push({ email, password, username });
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Account created for ' + username + '. You can now log in.');
-    toggleForms();
-  };
 </script>
 
 
