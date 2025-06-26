@@ -264,7 +264,7 @@ proceedBtn.addEventListener('click', () => {
         return;
     }
 
- fetch('https://catalog12.onrender.com/add_to_cart', {
+ fetch('https://productcatalog-backend.onrender.com/add_to_cart', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -327,7 +327,7 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
 const user_id = "kusumita123"; // Get this from login/session ideally
 
 window.addEventListener('DOMContentLoaded', () => {
-    fetch(`https://catalog12.onrender.com/get_cart?user_id=${user_id}`)
+    fetch(`https://productcatalog-backend.onrender.com/get_cart?user_id=${user_id}`)
         .then(res => res.json())
         .then(data => {
             if (data.cart && data.cart.length > 0) {
